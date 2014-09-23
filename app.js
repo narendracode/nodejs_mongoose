@@ -40,7 +40,19 @@ app.get("/get",function(req,res){
    });
 });
 
-
+app.get("/save",function(req,res){
+  var  blogPost = new BlogPost({
+     title: "save title",
+     body : "save Body"
+  });
+   
+   blogPost.save(function(err,savedBlog){
+      if(err){
+         console.log("Error occured while saving:"+err);
+      }
+       res.send("saved blog:"+savedBlog);
+   });
+  });
 
 
 var server = app.listen(3000,function(){
